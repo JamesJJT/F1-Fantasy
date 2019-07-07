@@ -29,10 +29,30 @@ class RaceController extends Controller
                 ]);
     }
 
-    public function show(Request $request){
-        $json = file_get_contents('https://ergast.com/api/f1/'.$request.'.json');
+    /**
+     * Display a list of the past seasons
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function pastSeasons(){
+        $json = file_get_contents('http://ergast.com/api/f1/seasons.json?limit=100');
         $f1json = json_decode($json);
-        return view('races')->with('f1json', $f1json);
+        return view('seasons.pastRaces')
+            ->with([
+                'f1json' => $f1json
+            ]);
+    }
+
+    public function specificSeason($year){
+        $json = file_get_contents('http://ergast.com/api/f1/'.$year.'.json');
+        $f1json = json_decode($json);
+        $date = $year;
+        return view('seasons.specificSeason')
+            ->with(
+                [
+                    'f1json' => $f1json,
+                    'date' => $date
+                ]);
     }
 
 
