@@ -17,4 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/races','RaceController@index')->name('races')->middleware('auth');
+Route::get('/drivers', 'DriverController@index')->name('drivers');
