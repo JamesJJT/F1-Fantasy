@@ -38,7 +38,7 @@
                                 Seasons <span class="caret"></span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item border-bottom" href="{{route('races')}}">Current Season</a>
                                 <a class="dropdown-item border-bottom" href="{{route('pastRaces')}}">List of Seasons</a>
                             </div>
