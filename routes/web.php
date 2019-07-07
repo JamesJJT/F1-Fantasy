@@ -17,6 +17,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
-Route::get('/races','RaceController@index')->name('races')->middleware('auth');
-Route::get('/drivers', 'DriverController@index')->name('drivers');
+Route::get('/home', 'HomeController@index')
+    ->name('home')
+    ->middleware('auth');
+
+Route::get('/races', 'RaceController@index')
+    ->name('races')
+    ->middleware('auth');
+Route::get('/races/pastraces', 'RaceController@pastSeasons')
+    ->name('pastRaces');
+Route::get('/races/pastraces/{year}', 'RaceController@specificSeason')
+    ->name('specificSeason');
+
+Route::get('/drivers', 'DriverController@index')
+    ->name('drivers');
