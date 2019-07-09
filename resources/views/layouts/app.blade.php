@@ -70,6 +70,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if(Auth::check() && Auth::user()->isAdmin())
+                                        <a class="dropdown-item border-bottom bg-dark text-white" href="#">Admin Dashboard</a>
+                                    @endif
                                     <a class="dropdown-item border-bottom" href="{{route('home')}}">Dashboard</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
