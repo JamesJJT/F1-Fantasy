@@ -37,15 +37,18 @@
                 <input type="text" name="admin" class="form-control" value="{{$user->admin}}">
             </div>
             <div class="form-group">
+                <p>Created at: {{$user->created_at}}</p>
+                <p>Updated at: {{$user->updated_at}}</p>
+            </div>
+            <div class="form-group">
                 <button type="submit" class="btn btn-primary">Update</button>
             </div>
+
         </form>
         <form method="post" action="{{route('adminUserDelete', ['id' => $user->id])}}" class="form-group">
             @csrf
             @method('delete')
-            <div class="form-group">
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </div>
+            <button type="submit" class="btn btn-danger">Delete</button>
         </form>
     </div>
 
