@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Validator;
 
 class AdminController extends Controller
 {
@@ -38,14 +38,14 @@ class AdminController extends Controller
         $validator = Validator::make($request->all(),[
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
-            'admin' => ['required', 'tinyint', 'max:1']
+            'admin' => ['required', 'boolean', 'max:1']
         ]);
 
         if ($validator->fails()) {
             return response()->json(["message" => $validator->errors()->all()], 400);
         }
 
-        User::where("user_id", $id)->update([
+        User::where("id", $id)->update([
             "name" => $request->name,
             "email" => $request->email,
             "admin" => $request->admin
@@ -53,8 +53,16 @@ class AdminController extends Controller
 
         $user = User::findOrFail($id);
 
-        return view('admin.specificUser')->with([
-            'user'=>$user
+        return redirect()->route('adminSpecificUser', ['user'=> $id])->with([
+            'success' => 'User updated successfully'
+        ]);
+    }
+    public function deleteUser($id){
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect()->route('adminUsers')->with([
+            'success' => 'User deleted successfully'
         ]);
     }
 }

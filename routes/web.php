@@ -22,7 +22,8 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/dashboard', 'AdminController@showDashboard')->name('adminDashboard');
     Route::get('/admin/users', 'AdminController@showUsers')->name('adminUsers');
     Route::get('/admin/users/{user}', 'AdminController@showSpecificUser')->name('adminSpecificUser');
-    Route::patch('/admin/user/update', 'AdminController@updateUser')->name('adminUpdateUser');
+    Route::patch('/admin/user/update/{id}', 'AdminController@updateUser')->name('adminUpdateUser');
+    Route::delete('/admin/user/delete/{id}', 'AdminController@deleteUser')->name('adminUserDelete');
 });
 
 //Auth Routes

@@ -8,7 +8,9 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header">Users</div>
+                    <div class="card-header">
+                        <a href="{{route('adminUsers')}}">Users</a>
+                    </div>
                     <div class="card-body">Number of users: {{$user}}</div>
                 </div>
             </div>
