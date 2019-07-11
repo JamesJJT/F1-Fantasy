@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -45,10 +46,13 @@ class AdminController extends Controller
             return response()->json(["message" => $validator->errors()->all()], 400);
         }
 
+        $current_date_time = Carbon::now()->toDateTimeString();
+
         User::where("id", $id)->update([
             "name" => $request->name,
             "email" => $request->email,
-            "admin" => $request->admin
+            "admin" => $request->admin,
+            "updated_at" => $current_date_time
         ]);
 
         $user = User::findOrFail($id);
