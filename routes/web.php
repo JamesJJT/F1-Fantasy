@@ -20,6 +20,7 @@ Auth::routes();
 //Admin Routes
 Route::middleware(['admin'])->group(function () {
     Route::get('/admin/dashboard', 'AdminController@showDashboard')->name('adminDashboard');
+    //Admin user pages
     Route::get('/admin/users', 'AdminController@showUsers')->name('adminUsers');
     Route::get('/admin/users/{user}', 'AdminController@showSpecificUser')->name('adminSpecificUser');
     Route::patch('/admin/user/update/{id}', 'AdminController@updateUser')->name('adminUpdateUser');
