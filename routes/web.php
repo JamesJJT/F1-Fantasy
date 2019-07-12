@@ -25,6 +25,10 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/users/{user}', 'AdminController@showSpecificUser')->name('adminSpecificUser');
     Route::patch('/admin/user/update/{id}', 'AdminController@updateUser')->name('adminUpdateUser');
     Route::delete('/admin/user/delete/{id}', 'AdminController@deleteUser')->name('adminUserDelete');
+    //Admin Fantasy Driver pages
+    Route::get('/admin/fantasy/drivers', 'FantasyTeamController@showDrivers')->name('adminFantasyDrivers');
+    Route::get('/admin/fantasy/drivers/add', 'FantasyTeamController@showAddDriver')->name('adminFantasyShowDriverAdd');
+    Route::post('/admin/fantasy/drivers/add/new', 'FantasyTeamController@addDriver')->name('adminFantasyDriverAdd');
 });
 
 //Auth Routes
