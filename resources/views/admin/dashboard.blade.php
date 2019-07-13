@@ -22,6 +22,7 @@
                     <div class="card-body">
                         <p><a href="{{route('adminFantasyDrivers')}}">Fantasy Drivers</a></p>
                         <p><a href="{{route('adminFantasyTeams')}}">Fantasy Teams</a></p>
+                        <p><a href="{{route('adminFantasyPoints')}}">Fantasy Points Update</a></p>
                     </div>
                 </div>
             </div>
