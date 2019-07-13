@@ -8,19 +8,20 @@
                 <li class="breadcrumb-item">Fantasy Drivers</li>
             </ol>
         </nav>
-        <div class="row">
-            @if ($message = Session::get('message'))
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="alert alert-success">
-                            {{ $message }}
-                        </div>
+        <h1>Drivers</h1>
+        @if ($message = Session::get('message'))
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-success">
+                        {{ $message }}
                     </div>
                 </div>
-            @endif
-        </div>
+            </div>
+        @endif
         <div class="row">
-            <a name="" id="" class="btn btn-primary" href="{{route('adminFantasyShowDriverAdd')}}" role="button">Add New Driver</a>
+            <div class="col-md-12 mb-2">
+                <a name="" id="" class="btn btn-primary float-right" href="{{route('adminFantasyShowDriverAdd')}}" role="button">Add New Driver</a>
+            </div>
         </div>
         <div class="row">
             <table class="table">
@@ -37,7 +38,7 @@
                 <tbody>
                     @foreach ($drivers as $driver)
                     <tr>
-                        <td scope="row">{{$driver->id}}</td>
+                        <td scope="row"><a href="{{route('adminSpecificDriver', [$driver->id])}}">{{$driver->id}}</a></td>
                         <td>{{$driver->first_name}}</td>
                         <td>{{$driver->last_name}}</td>
                         <td>{{$driver->team}}</td>

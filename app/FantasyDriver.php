@@ -26,6 +26,6 @@ class FantasyDriver extends Model
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'points', 'team','value',
+        'first_name', 'last_name', 'team','points','value',
     ];
 }

@@ -26,9 +26,12 @@ Route::middleware(['admin'])->group(function () {
     Route::patch('/admin/user/update/{id}', 'AdminController@updateUser')->name('adminUpdateUser');
     Route::delete('/admin/user/delete/{id}', 'AdminController@deleteUser')->name('adminUserDelete');
     //Admin Fantasy Driver pages
-    Route::get('/admin/fantasy/drivers', 'FantasyTeamController@showDrivers')->name('adminFantasyDrivers');
-    Route::get('/admin/fantasy/drivers/add', 'FantasyTeamController@showAddDriver')->name('adminFantasyShowDriverAdd');
-    Route::post('/admin/fantasy/drivers/add/new', 'FantasyTeamController@addDriver')->name('adminFantasyDriverAdd');
+    Route::get('/admin/fantasy/drivers', 'DriverController@showDrivers')->name('adminFantasyDrivers');
+    Route::get('/admin/fantasy/drivers/add', 'DriverController@showAddDriver')->name('adminFantasyShowDriverAdd');
+    Route::post('/admin/fantasy/drivers/add/new', 'DriverController@addDriver')->name('adminFantasyDriverAdd');
+    Route::get('/admin/fantasy/driver/{driver}', 'DriverController@showSpecificDriver')->name('adminSpecificDriver');
+    Route::patch('/admin/fantasy/update/{driver}', 'DriverController@updateDriver')->name('adminUpdateDriver');
+    Route::delete('/admin/fantasy/delete/{driver}', 'DriverController@deleteDriver')->name('adminDriverDelete');
 });
 
 //Auth Routes
