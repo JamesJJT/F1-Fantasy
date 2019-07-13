@@ -5,11 +5,18 @@
         <h1>Update Points</h1>
         @include('partials/errors')
             <div class="row">
-                <div class="col-md-12">
                     @isset($f1json)
-                        <h3>Most recent race result: {{$f1json}}</h3>
+                        <div class="col-md-12 bg-secondary rounded mb-2 text-white">
+                            <h3>Most recent race result: {{$f1json->Races[0]->raceName}}</h3>
+                            @foreach ($f1json->Races[0]->Results as $f1)
+                                    <p>
+                                        <div class="text-small">
+                                            {{$f1->Driver->familyName}}     ->      {{$f1->Constructor->name}}
+                                        </div>
+                                    </p>
+                            @endforeach
+                        </div>
                     @endisset
-                </div>
                 <div class="col-md-12">
                     <a href="{{route('adminFantasyPointsGetInfo')}}" class="btn btn-primary mb-2">Get the most recent race</a>
                 </div>

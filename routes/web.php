@@ -41,7 +41,7 @@ Route::middleware(['admin'])->group(function () {
     Route::delete('/admin/fantasy/delete/team/{team}', 'FantasyTeamController@deleteTeam')->name('adminTeamDelete');
     //Update Points
     Route::get('/admin/fantasy/updatePoints', ('FantasyPointsController@showPoints'))->name('adminFantasyPoints');
-    Route::get('/admin/fantasy/updatePoints/getinfo', ('FantasyPointsController@getMostRecentRace'))->name('adminFantasyPointsGetInfo');
+    Route::get('/admin/fantasy/updatePoints/getInfo', ('FantasyPointsController@getMostRecentRace'))->name('adminFantasyPointsGetInfo');
 });
 
 //Auth Routes

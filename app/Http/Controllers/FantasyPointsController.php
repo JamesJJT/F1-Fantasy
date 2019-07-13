@@ -16,7 +16,7 @@ class FantasyPointsController extends Controller
 
         $f1json  = json_decode($json);
 
-        $f1json = $f1json->MRData->RaceTable->Races[0]->raceName;
+        $f1json = $f1json->MRData->RaceTable;
 
         return view('admin.fantasy.points')->with([
             'f1json' => $f1json
