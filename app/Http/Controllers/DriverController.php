@@ -35,7 +35,7 @@ class DriverController extends Controller
 
         if ($validator->fails()) {
             return redirect()->route('adminFantasyShowDriverAdd')->with([
-                "message" => $validator->errors()->all()
+                "danger" => $validator->errors()->all()
             ]);
         }
 
@@ -48,7 +48,7 @@ class DriverController extends Controller
         ]);
 
         return redirect()->route('adminFantasyDrivers')->with([
-            'message', 'Driver created successfully'
+            'success', 'Driver created successfully'
         ]);
     }
 
@@ -71,7 +71,7 @@ class DriverController extends Controller
         ]);
         if ($validator->fails()) {
             return redirect()->route('adminSpecificDriver', ['driver'=> $id])->with([
-                "message" => ['danger' =>$validator->errors()->all()]
+                'danger' =>$validator->errors()->all()
             ]);
         }
 
@@ -87,7 +87,7 @@ class DriverController extends Controller
         ]);
 
         return redirect()->route('adminSpecificDriver', ['driver'=> $id])->with([
-            "message" => ['success' => "Driver updated successfully"]
+            'success' => 'Driver updated successfully',
         ]);
     }
     public function deleteDriver($id){
@@ -95,7 +95,7 @@ class DriverController extends Controller
         $driver->delete();
 
         return redirect()->route('adminFantasyDrivers')->with([
-            'message' => 'Driver deleted successfully'
+            'success' => 'Driver deleted successfully'
         ]);
     }
 }

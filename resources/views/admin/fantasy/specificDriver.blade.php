@@ -9,9 +9,9 @@
                 <li class="breadcrumb-item active">Driver: {{$driver->id}}</li>
             </ol>
         </nav>
-        @include('/partials/errors')
+        @include('partials.errors')
         <div class="row">
-            <h1>User ID: {{$driver->id}}</h1>
+            <h1>Driver ID: {{$driver->id}}</h1>
         </div>
         <form method="post" action="{{route('adminUpdateDriver', ['id' => $driver->id])}}" class="form-group">
             @csrf
@@ -33,7 +33,7 @@
                 <input type="number" name="points" class="form-control" value="{{$driver->points}}">
             </div>
             <div class="form-group">
-                <label>Points</label>
+                <label>Value</label>
                 <input type="number" name="value" class="form-control" value="{{$driver->value}}">
             </div>
             <div class="form-group">

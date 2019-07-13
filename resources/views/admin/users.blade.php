@@ -8,15 +8,7 @@
                 <li class="breadcrumb-item active">Users</li>
             </ol>
         </nav>
-        @if ($message = Session::get('success'))
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="alert alert-success">
-                        {{ $message }}
-                    </div>
-                </div>
-            </div>
-        @endif
+        @include('partials.errors')
         <div class="row">
             <h1>Users</h1>
         </div>
