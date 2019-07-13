@@ -31,9 +31,13 @@
               <input type="text" name="last_name" class="form-control" placeholder="" aria-describedby="helpId">
             </div>
             <div class="form-group">
-                    <label for="">Team</label>
-                    <input type="text" name="team" class="form-control" placeholder="" aria-describedby="helpId">
-                  </div>
+                <label for="">Team</label>
+                <select name="team" class="form-control">
+                    @foreach($teamoptions as $team)
+                        <option>{{$team->name}}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="form-group">
               <label for="">Points</label>
               <input type="number" name="points" class="form-control" placeholder="0" aria-describedby="helpId">

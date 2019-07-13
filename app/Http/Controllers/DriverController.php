@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\FantasyDriver;
+use App\FantasyTeam;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
@@ -20,7 +21,10 @@ class DriverController extends Controller
 
     public function showAddDriver()
     {
-        return view('admin.fantasy.addDriver');
+        $teamoptions = FantasyTeam::all();
+        return view('admin.fantasy.addDriver')->with([
+            'teamoptions' => $teamoptions
+        ]);
     }
 
     public function addDriver(Request $request)
@@ -56,13 +60,13 @@ class DriverController extends Controller
     {
         $driver = FantasyDriver::findOrFail($driver);
         return view('admin.fantasy.specificDriver')->with([
-            'driver'=>$driver
+            'driver' => $driver
         ]);
     }
 
     public function updateDriver(Request $request, $id)
     {
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'first_name' => ['required'],
             'last_name' => ['required'],
             'team' => ['required'],
@@ -70,8 +74,8 @@ class DriverController extends Controller
             'value' => ['required'],
         ]);
         if ($validator->fails()) {
-            return redirect()->route('adminSpecificDriver', ['driver'=> $id])->with([
-                'danger' =>$validator->errors()->all()
+            return redirect()->route('adminSpecificDriver', ['driver' => $id])->with([
+                'danger' => $validator->errors()->all()
             ]);
         }
 
@@ -86,11 +90,13 @@ class DriverController extends Controller
             "updated_at" => $current_date_time
         ]);
 
-        return redirect()->route('adminSpecificDriver', ['driver'=> $id])->with([
+        return redirect()->route('adminSpecificDriver', ['driver' => $id])->with([
             'success' => 'Driver updated successfully',
         ]);
     }
-    public function deleteDriver($id){
+
+    public function deleteDriver($id)
+    {
         $driver = FantasyDriver::find($id);
         $driver->delete();
 

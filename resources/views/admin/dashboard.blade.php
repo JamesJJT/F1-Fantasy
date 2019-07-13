@@ -17,7 +17,11 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{route('adminFantasyDrivers')}}">Fantasy Drivers</a>
+                        Fantasy Team
+                    </div>
+                    <div class="card-body">
+                        <p><a href="{{route('adminFantasyDrivers')}}">Fantasy Drivers</a></p>
+                        <p><a href="{{route('adminFantasyTeams')}}">Fantasy Teams</a></p>
                     </div>
                 </div>
             </div>

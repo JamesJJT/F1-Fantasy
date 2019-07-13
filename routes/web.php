@@ -32,6 +32,13 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/fantasy/driver/{driver}', 'DriverController@showSpecificDriver')->name('adminSpecificDriver');
     Route::patch('/admin/fantasy/update/{driver}', 'DriverController@updateDriver')->name('adminUpdateDriver');
     Route::delete('/admin/fantasy/delete/{driver}', 'DriverController@deleteDriver')->name('adminDriverDelete');
+    //Admin Fantasy Teams Pages
+    Route::get('/admin/fantasy/teams', 'FantasyTeamController@showTeam')->name('adminFantasyTeams');
+    Route::get('/admin/fantasy/teams/add', 'FantasyTeamController@showAddTeam')->name('adminFantasyShowTeamAdd');
+    Route::post('/admin/fantasy/teams/add/new', 'FantasyTeamController@addTeam')->name('adminFantasyTeamAdd');
+    Route::get('/admin/fantasy/team/{team}', 'FantasyTeamController@showSpecificTeam')->name('adminSpecificTeam');
+    Route::patch('/admin/fantasy/update/team/{team}', 'FantasyTeamController@updateTeam')->name('adminUpdateTeam');
+    Route::delete('/admin/fantasy/delete/team/{team}', 'FantasyTeamController@deleteTeam')->name('adminTeamDelete');
 });
 
 //Auth Routes
