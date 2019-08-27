@@ -19,6 +19,13 @@ class TeamController extends Controller
 
     public function showCreateTeam()
     {
+        $user = Auth::user();
+
+        if (UserTeam::where('user_id', '=', $user->id)->first()) {
+            return redirect()->route('showUsersTeam')->with([
+                "danger" => "You already have a team."
+            ]);
+        }
         $drivers = FantasyDriver::all();
         $teams = FantasyTeam::all();
 
@@ -37,7 +44,7 @@ class TeamController extends Controller
             'driver_4_id' => ['required'],
             'driver_5_id' => ['required'],
             'team_1_id' => ['required'],
-        ]);        
+        ]);
 
         if ($validator->fails()) {
             return redirect()->route('showCreateTeam')->with([
@@ -52,8 +59,8 @@ class TeamController extends Controller
         $driver5 = TeamController::getDriverID($request->driver_5_id);
         $team1 = TeamController::getTeamID($request->team_1_id);
 
-        $value =    $driver1->value + 
-                    $driver2->value + 
+        $value =    $driver1->value +
+                    $driver2->value +
                     $driver3->value +
                     $driver4->value +
                     $driver5->value +
@@ -61,12 +68,12 @@ class TeamController extends Controller
 
         if ($value > 100) {
             return redirect()->route('createTeam')->with([
-                "danger" => "Your values is over 100m."
+                "danger" => "Your team is worth more than 100m"
             ]);
         }
 
         $user = Auth::user();
-
+        
         UserTeam::create([
             'user_id' => $user->id,
             'driver_1_id' => $driver1->id,
@@ -87,12 +94,14 @@ class TeamController extends Controller
         ]);
     }
 
-    function getDriverID($id){
+    public function getDriverID($id)
+    {
         $driver = FantasyDriver::findorfail($id);
         return $driver;
     }
 
-    function getTeamID($id){
+    public function getTeamID($id)
+    {
         $team = FantasyTeam::findorfail($id);
         return $team;
     }
