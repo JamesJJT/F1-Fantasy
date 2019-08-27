@@ -13,8 +13,10 @@ class AdminController extends Controller
     public function showDashboard()
     {
         $userinfo = Auth::user()->count();
+        $admincount = User::where('admin', '=', '1')->count();
         return view('admin.dashboard')->with([
             'user' => $userinfo,
+            'admincount' => $admincount,
         ]);
     }
 
@@ -36,7 +38,7 @@ class AdminController extends Controller
 
     public function updateUser(Request $request, $id)
     {
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'admin' => ['required', 'boolean', 'max:1']
@@ -61,7 +63,8 @@ class AdminController extends Controller
             'success' => 'User updated successfully'
         ]);
     }
-    public function deleteUser($id){
+    public function deleteUser($id)
+    {
         $user = User::find($id);
         $user->delete();
 

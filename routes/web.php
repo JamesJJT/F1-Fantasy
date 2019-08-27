@@ -41,4 +41,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/races/pastraces/{year}', 'RaceController@specificSeason')->name('specificSeason');
 
     Route::get('/drivers', 'DriverController@index')->name('drivers');
+
+    //User fantasy team
+    Route::get('/fantasy/{id}', 'FantasyController@showTeam')->name('showFantasyTeam');
+
+    //TODO: Create team
+    //TODO: View league
+    //TODO: Update team
+    //TODO: View team
+    //Team
+    Route::get('/team', 'TeamController@showUsersTeam')->name('showUsersTeam');
+    Route::get('/team/create', 'TeamController@showCreateTeam')->name('showCreateTeam');
+    Route::post('/team/create', 'TeamController@createTeam')->name('createTeam');
 });

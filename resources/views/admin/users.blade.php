@@ -10,6 +10,9 @@
         </nav>
         @include('partials.errors')
         <div class="row">
+            <div class="col-md-2">
+                @include('admin.partials.sidebar')
+            </div>
             <h1>Users</h1>
         </div>
         <div class="row">
