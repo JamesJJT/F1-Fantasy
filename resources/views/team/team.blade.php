@@ -13,14 +13,13 @@
                     <a href="{{route('showCreateTeam')}}"><button class="btn btn-primary">View All Teams</button></a>
                 </div>
             </div>
-            @if (!$userteam)
+            @if ($noteam)
                 <h3>You have no team created.</h3>
                 <a href="{{route('showCreateTeam')}}"><button class="btn btn-primary">Create a Team</button></a>
             @endif
         </div>
     </div>
-    
-    @if ($userteam)
+    @if($userteam != null)
         <div class="row">
             <div class="col-md">
                 <h3>Drivers</h3>
@@ -48,8 +47,9 @@
             <div class="col-md pb-2">
                 <div class="card text-left">
                   <div class="card-body">
-                    <h4 class="card-title">Title</h4>
-                    <p class="card-text">Body</p>
+                    <h4 class="card-title">{{$driver3->first_name}} {{$driver3->last_name}}</h4>
+                    <p class="card-text">Value: {{$driver3->value}}</p>
+                    <p class="card-text">Points: {{$driver3->points}}</p>
                   </div>
                 </div>
             </div>
@@ -58,16 +58,18 @@
             <div class="col-md pb-2">
                 <div class="card text-left">
                     <div class="card-body">
-                    <h4 class="card-title">Title</h4>
-                    <p class="card-text">Body</p>
+                        <h4 class="card-title">{{$driver4->first_name}} {{$driver4->last_name}}</h4>
+                        <p class="card-text">Value: {{$driver4->value}}</p>
+                        <p class="card-text">Points: {{$driver4->points}}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md pb-2">
                 <div class="card text-left">
                     <div class="card-body">
-                    <h4 class="card-title">Title</h4>
-                    <p class="card-text">Body</p>
+                        <h4 class="card-title">{{$driver5->first_name}} {{$driver5->last_name}}</h4>
+                        <p class="card-text">Value: {{$driver5->value}}</p>
+                        <p class="card-text">Points: {{$driver5->points}}</p>
                     </div>
                 </div>
             </div>
@@ -86,8 +88,9 @@
             <div class="col-md">
                 <div class="card text-left">
                   <div class="card-body">
-                    <h4 class="card-title">Title</h4>
-                    <p class="card-text">Body</p>
+                    <h4 class="card-title">{{$team->name}}</h4>
+                    <p class="card-text">Value: {{$team->value}}</p>
+                    <p class="card-text">Points: {{$team->points}}</p>
                   </div>
                 </div>
             </div>

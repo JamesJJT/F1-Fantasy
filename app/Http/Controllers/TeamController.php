@@ -16,7 +16,12 @@ class TeamController extends Controller
     {
         $user = Auth::user();
         $usersTeam = UserTeam::where('user_id', '=', $user->id)->first();
-
+        if ($usersTeam === null){
+            return view('team.team')->with([
+                'noteam' => 'You have no team.',
+                'userteam' => null,
+            ]);
+        }
         $driver1 = FantasyDriver::find($usersTeam->driver_1_id)->first();
         $driver2 = FantasyDriver::find($usersTeam->driver_2_id)->first();
         $driver3 = FantasyDriver::find($usersTeam->driver_3_id)->first();
@@ -49,6 +54,7 @@ class TeamController extends Controller
             'team' => $team,
             'points' => $points,
             'value' => $value,
+            'noteam' => 0,
         ]);
     }
 
