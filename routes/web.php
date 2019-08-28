@@ -53,4 +53,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/team', 'TeamController@showUsersTeam')->name('showUsersTeam');
     Route::get('/team/create', 'TeamController@showCreateTeam')->name('showCreateTeam');
     Route::post('/team/create', 'TeamController@createTeam')->name('createTeam');
+    Route::get('/team/all', 'TeamController@showAllTeams')->name('showAllTeams');
+    Route::get('/team/all/{id}', 'TeamController@showSpecificTeam')->name('showSpecificTeam');
 });

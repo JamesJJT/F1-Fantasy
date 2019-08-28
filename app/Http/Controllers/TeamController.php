@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\FantasyDriver;
 use App\FantasyTeam;
+use App\User;
 use App\UserTeam;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -16,18 +17,18 @@ class TeamController extends Controller
     {
         $user = Auth::user();
         $usersTeam = UserTeam::where('user_id', '=', $user->id)->first();
-        if ($usersTeam === null){
+        if ($usersTeam === null) {
             return view('team.team')->with([
                 'noteam' => 'You have no team.',
                 'userteam' => null,
             ]);
         }
-        $driver1 = FantasyDriver::find($usersTeam->driver_1_id)->first();
-        $driver2 = FantasyDriver::find($usersTeam->driver_2_id)->first();
-        $driver3 = FantasyDriver::find($usersTeam->driver_3_id)->first();
-        $driver4 = FantasyDriver::find($usersTeam->driver_4_id)->first();
-        $driver5 = FantasyDriver::find($usersTeam->driver_5_id)->first();
-        $team = FantasyTeam::find($usersTeam->team_1_id)->first();
+        $driver1 = FantasyDriver::where('id', '=', $usersTeam->driver_1_id)->first();
+        $driver2 = FantasyDriver::where('id', '=', $usersTeam->driver_2_id)->first();
+        $driver3 = FantasyDriver::where('id', '=', $usersTeam->driver_3_id)->first();
+        $driver4 = FantasyDriver::where('id', '=', $usersTeam->driver_4_id)->first();
+        $driver5 = FantasyDriver::where('id', '=', $usersTeam->driver_5_id)->first();
+        $team = FantasyTeam::where('id', '=', $usersTeam->team_1_id)->first();
         
         $value =    $driver1->value +
                     $driver2->value +
@@ -132,6 +133,56 @@ class TeamController extends Controller
 
         return redirect()->route('showUsersTeam')->with([
             'success', 'Team created successfully'
+        ]);
+    }
+
+    public function showAllTeams()
+    {
+        return view('team.all')->with([
+            'teams' => UserTeam::paginate(15)->sortBy('points'),
+        ]);
+    }
+
+    public function showSpecificTeam($teamid)
+    {
+        $userid = UserTeam::where('id','=',$teamid)->pluck('user_id')->first();
+        $username = User::findOrFail($userid)->pluck('name')->first();
+
+        $usersTeam = UserTeam::where('user_id', '=', $userid)->first();
+
+        $driver1 = FantasyDriver::where('id', '=', $usersTeam->driver_1_id)->first();
+        $driver2 = FantasyDriver::where('id', '=', $usersTeam->driver_2_id)->first();
+        $driver3 = FantasyDriver::where('id', '=', $usersTeam->driver_3_id)->first();
+        $driver4 = FantasyDriver::where('id', '=', $usersTeam->driver_4_id)->first();
+        $driver5 = FantasyDriver::where('id', '=', $usersTeam->driver_5_id)->first();
+        $team = FantasyTeam::where('id', '=', $usersTeam->team_1_id)->first();
+        
+        $value =    $driver1->value +
+                    $driver2->value +
+                    $driver3->value +
+                    $driver4->value +
+                    $driver5->value +
+                    $team->value;
+
+        $points =   $driver1->points +
+                    $driver2->points +
+                    $driver3->points +
+                    $driver4->points +
+                    $driver5->points +
+                    $team->points;
+
+
+        return view('team.specificTeam')->with([
+            'username' => $username,
+            'driver1' => $driver1,
+            'driver2' => $driver2,
+            'driver3' => $driver3,
+            'driver4' => $driver4,
+            'driver5' => $driver5,
+            'team' => $team,
+            'points' => $points,
+            'value' => $value,
+            'noteam' => 0,
         ]);
     }
 

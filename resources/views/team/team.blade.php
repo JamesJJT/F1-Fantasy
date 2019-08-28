@@ -10,7 +10,7 @@
                     <h1>Your Team</h1>
                 </div>
                 <div>
-                    <a href="{{route('showCreateTeam')}}"><button class="btn btn-primary">View All Teams</button></a>
+                    <a href="{{route('showAllTeams')}}"><button class="btn btn-primary">View All Teams</button></a>
                 </div>
             </div>
             @if ($noteam)
