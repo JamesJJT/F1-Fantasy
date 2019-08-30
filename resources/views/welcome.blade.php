@@ -2,9 +2,6 @@
 
 @section('content')
 <div class="container">
-    @include('layouts.team-card')
-    @include('layouts.team-card')
-    @include('layouts.team-card')
-    @include('layouts.team-card')
+    Home page
 </div>
 @endsection

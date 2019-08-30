@@ -12,7 +12,7 @@ $factory->define(FantasyDriver::class, function (Faker $faker) {
     return [
         'first_name' => $faker->name,
         'last_name' => $faker->name,
-        'team' => $team->id,
+        'team' => $team->name,
         'points' => $faker->randomDigit,
         'value' => $faker->randomDigit
     ];
