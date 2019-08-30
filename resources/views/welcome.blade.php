@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<p>test test</p>
-<i class="fa fa-user"></i>
-    @endsection
+<div class="container">
+    @include('layouts.team-card')
+    @include('layouts.team-card')
+    @include('layouts.team-card')
+    @include('layouts.team-card')
+</div>
+@endsection

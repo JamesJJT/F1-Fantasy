@@ -139,7 +139,7 @@ class TeamController extends Controller
     public function showAllTeams()
     {
         return view('team.all')->with([
-            'teams' => UserTeam::paginate(15)->sortBy('points'),
+            'teams' => UserTeam::orderBy('points','DESC')->paginate(15),
         ]);
     }
 

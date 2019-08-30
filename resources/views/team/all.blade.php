@@ -3,29 +3,19 @@
 @section('content')
     <div class="container">
         <div class="row">
+            <h1>All Teams</h1>
+        </div>
+        <div class="row">
             <div class="col-md-12">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">User ID</th>
-                        <th scope="col">Value</th>
-                        <th scope="col">Points</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+                    <?php $i = 0?>
                     @foreach($teams as $team)
-                        <tr scope="row">
-                            {{-- <td><a href="{{route('adminSpecificUser', [$team->id])}}">{{$user->id}}</a></td> --}}
-                            <td><a href="{{route('showSpecificTeam', [$team->id])}}">{{$team->id}}</a></td>
-                            <td>{{$team->user_id}}</td>
-                            <td>{{$team->value}}</td>
-                            <td>{{$team->points}}</td>
-                        </tr>
+                        <?php $i++;?>
+                        @include('layouts.team-card')
                     @endforeach
-                    </tbody>
-                </table>
             </div>
         </div>
+    </div>
+    <div class="pagination justify-content-center">
+        {{ $teams->links() }}
     </div>
 @endsection
