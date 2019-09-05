@@ -10,9 +10,9 @@
 - php artisan tinker
 - factory(App\UserTeam::class, 20)->create(); (This will create 20 User Fantasy teams)
 
-###Showing the webpage
+##Showing the webpage
 - php artisan serve
-####Or (Recommended)
+##Or (Recommended)
 - WAMP
 - XAMPP
 - Laragon
