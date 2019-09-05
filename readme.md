@@ -12,6 +12,7 @@
 
 ##Showing the webpage
 - php artisan serve
+
 ##Or (Recommended)
 - WAMP
 - XAMPP
